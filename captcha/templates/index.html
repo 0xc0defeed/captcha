@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+{% include "includes/alerts.html" %}
+
+<form method="POST" action="{{ url_for('views.index') }}">
+  {{ form.csrf_token }}
+
+  {% if form.email.errors %}
+    <label>E-mail:*</label>
+    {{ form.email(class="") }}
+    {% for error in form.email.errors %}{{ error }}{% endfor %}
+  {% else %}
+    <label>E-mail:*</label>
+    {{ form.email(class="") }}
+  {% endif %}
+
+  <br><br>
+
+  <img src="static/img/captcha/output/{{ captcha_path }}" width="60" alt="">
+
+  <br>
+
+  {% if form.captcha.errors %}
+    <label>Captcha:*</label>
+    {{ form.captcha(class="") }}
+    {% for error in form.captcha.errors %}{{ error }}{% endfor %}
+  {% else %}
+    <label>Captcha:*</label>
+    {{ form.captcha(class="") }}
+  {% endif %}
+
+  <br>
+
+  {{ form.submit(class="", value="GO") }}
+</form>
+{% endblock %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+
+    <link rel="shortcut icon" href="/static/img/favicon.ico">
+  </head>
+
+  <body>
+  {% block content %}
+  {% endblock %}
+
+  <script type='text/javascript' src='{{ url_for('static', filename='js/app.js') }}'></script>
+  </body>
+</html>
