@@ -12,7 +12,7 @@ mod = Blueprint('views', __name__)
 def index():
     form = DemoForm()
 
-    if request.method == 'GET' or form.validate_on_submit() is False:
+    if request.method == 'GET':
         captcha()
         captcha_path = session['captcha_path']
 
@@ -21,6 +21,8 @@ def index():
         return redirect(url_for('views.index'))
 
     if form.errors:
+        captcha()
+        captcha_path = session['captcha_path']
         flash("Danger", 'danger')
 
     return render_template('index.html',
